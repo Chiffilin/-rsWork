@@ -63,21 +63,7 @@ namespace СrsWork
             dataGridView1.ReadOnly = true;
 
             
-           /* for (int i = 0; i < 20; ++i)
-            {
-                //Добавляем строку, указывая значения каждой ячейки по имени (можно использовать индекс 0, 1, 2 вместо имен)
-                dataGridView1.Rows.Add();
-                dataGridView1["name", dataGridView1.Rows.Count - 1].Value = "ФИО-"+ (1+i);
-                // dataGridView1["number", dataGridView1.Rows.Count - 1].Value = 1+i;
-                for (int j = 0; j < dataGridView1.Rows.Count; j++)
-                {
-                    dataGridView1.Rows[j].Cells[1].Value = j + 1;
-                }
-                dataGridView1["addres", dataGridView1.Rows.Count - 1].Value = "Проспект Мира-"+ (1+i);
-                dataGridView1["cash", dataGridView1.Rows.Count - 1].Value = (i*500)+2000;
-                dataGridView1["contract", dataGridView1.Rows.Count - 1].Value = 5+i;
-            }
-           */
+          
             //А теперь простой пройдемся циклом по всем ячейкам
             for (int i = 0; i < dataGridView1.Rows.Count; ++i)
             {
@@ -88,7 +74,26 @@ namespace СrsWork
                     object o = dataGridView1[j, i].Value;
                 }
             }
-            
+            dataGridView1.Rows.Clear();
+            string file = "D:\\mygrid.bin";
+            using (BinaryReader bw = new BinaryReader(File.Open(file, FileMode.Open)))
+            {
+                int n = bw.ReadInt32();
+                int m = bw.ReadInt32();
+                for (int i = 0; i < m; ++i)
+                {
+                    dataGridView1.Rows.Add();
+                    for (int j = 0; j < n; ++j)
+                    {
+                        if (bw.ReadBoolean())
+                        {
+                            dataGridView1.Rows[i].Cells[j].Value = bw.ReadString();
+                        }
+                        else bw.ReadBoolean();
+                    }
+                }
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -235,7 +240,7 @@ namespace СrsWork
             if (textBox4.Text != "")
             {
 
-                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                for (int i = 0; i < dataGridView1.Rows.Count - 5; i++)
                 {
                     dataGridView1.Rows[i].Visible = dataGridView1[4, i].Value.ToString() == textBox4.Text;
                 }
@@ -251,7 +256,7 @@ namespace СrsWork
         }
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            string file = "E:\\mygrid.bin";
+            string file = "D:\\mygrid.bin";
             using (BinaryWriter bw = new BinaryWriter(File.Open(file, FileMode.Create)))
             {
                 bw.Write(dataGridView1.Columns.Count);
@@ -279,7 +284,7 @@ namespace СrsWork
         private void loadToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
-            string file = "E:\\mygrid.bin";
+            string file = "D:\\mygrid.bin";
             using (BinaryReader bw = new BinaryReader(File.Open(file, FileMode.Open)))
             {
                 int n = bw.ReadInt32();
