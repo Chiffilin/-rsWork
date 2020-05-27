@@ -156,14 +156,14 @@
             // saveToolStripMenuItem1
             // 
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
             this.saveToolStripMenuItem1.Text = "Save";
             this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
             // 
             // loadToolStripMenuItem1
             // 
             this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
-            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
             this.loadToolStripMenuItem1.Text = "Load";
             this.loadToolStripMenuItem1.Click += new System.EventHandler(this.loadToolStripMenuItem1_Click);
             // 
@@ -222,9 +222,9 @@
             // 
             this.button6.Location = new System.Drawing.Point(479, 51);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(88, 22);
+            this.button6.Size = new System.Drawing.Size(108, 22);
             this.button6.TabIndex = 13;
-            this.button6.Text = "Поиск";
+            this.button6.Text = "Поиск по вкладу";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -250,9 +250,9 @@
             // 
             this.button7.Location = new System.Drawing.Point(481, 100);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(86, 22);
+            this.button7.Size = new System.Drawing.Size(106, 22);
             this.button7.TabIndex = 16;
-            this.button7.Text = "Поиск";
+            this.button7.Text = "Поиск по сроку";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
