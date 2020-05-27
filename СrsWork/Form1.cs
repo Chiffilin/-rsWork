@@ -171,7 +171,7 @@ namespace СrsWork
 
 
         }
-        private void button5_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e) //Кнопка поиск
         {
            
             if (textBox2.Text != "")// Проверка на заполнения поля "Text" в textBox2
@@ -235,57 +235,74 @@ namespace СrsWork
         }
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            string file = "D:\\mygrid.bin";
-            using (BinaryWriter bw = new BinaryWriter(File.Open(file, FileMode.Create)))
+            if (toolStripTextBox1.Text != "")
             {
-                
-                bw.Write(dataGridView1.Columns.Count);
-                bw.Write(dataGridView1.Rows.Count);
-                foreach (DataGridViewRow dgvR in dataGridView1.Rows)
+                string file = toolStripTextBox1.Text+".bin";
+                using (BinaryWriter bw = new BinaryWriter(File.Open(file, FileMode.Create)))
                 {
-                    for (int j = 0; j < dataGridView1.Columns.Count; ++j)
+
+                    bw.Write(dataGridView1.Columns.Count);
+                    bw.Write(dataGridView1.Rows.Count);
+                    foreach (DataGridViewRow dgvR in dataGridView1.Rows)
                     {
-                        object val = dgvR.Cells[j].Value;
-                        if (val == null)
+                        for (int j = 0; j < dataGridView1.Columns.Count; ++j)
                         {
-                            bw.Write(false);
-                            bw.Write(false);
+                            object val = dgvR.Cells[j].Value;
+                            if (val == null)
+                            {
+                                bw.Write(false);
+                                bw.Write(false);
+                            }
+                            else
+                            {
+                                bw.Write(true);
+                                bw.Write(val.ToString());
+                            }
                         }
-                        else
-                        {
-                            bw.Write(true);
-                            bw.Write(val.ToString());
-                        }
+
                     }
-               
+
                 }
-
-
-             }
-    }
+            }
+            else
+            {
+                MessageBox.Show("Ошибка! Укажите путь сохранения файла!\n Например:  D:\\filename");
+            }
+        }
 
         private void loadToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
-            string file = "D:\\mygrid.bin";
-            using (BinaryReader bw = new BinaryReader(File.Open(file, FileMode.Open)))
+            if (toolStripTextBox1.Text != "")
             {
-                int n = bw.ReadInt32();
-                int m = bw.ReadInt32();
-                for (int i = 0; i < m; ++i)
-                {
-                    dataGridView1.Rows.Add();
-                    for (int j = 0; j < n; ++j)
+                dataGridView1.Rows.Clear();
+                string file = toolStripTextBox1.Text + ".bin";
+
+
+                using (BinaryReader bw = new BinaryReader(File.Open(file, FileMode.Open)))
+                    if (toolStripTextBox1.Text != "")
                     {
-                        if (bw.ReadBoolean())
+                        int n = bw.ReadInt32();
+                        int m = bw.ReadInt32();
+                        for (int i = 0; i < m; ++i)
                         {
-                            dataGridView1.Rows[i].Cells[j].Value = bw.ReadString();
+                            dataGridView1.Rows.Add();
+                            for (int j = 0; j < n; ++j)
+                            {
+                                if (bw.ReadBoolean())
+                                {
+                                    dataGridView1.Rows[i].Cells[j].Value = bw.ReadString();
+                                }
+                                else bw.ReadBoolean();
+                            }
                         }
-                        else bw.ReadBoolean();
+
                     }
-                }
             }
-        }
+            else
+            {
+                MessageBox.Show("Ошибка! Укажите путь загрузки файла! \n Например:  D:\\filename");
+            }
+    }  
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
