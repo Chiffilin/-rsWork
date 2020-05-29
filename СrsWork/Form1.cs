@@ -339,6 +339,12 @@ namespace СrsWork
 
             e.Handled = !char.IsNumber(e.KeyChar);
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Form5 f = new Form5();
+            f.ShowDialog();
+        }
     }   
 }
 
