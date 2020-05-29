@@ -48,6 +48,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button3
@@ -233,11 +234,21 @@
             this.label8.Text = "3. После нажатие на кнопку FILE в верхней части приложения, то будет открыто мено" +
     " сохранения или загрузки файла.";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(5, 48);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(281, 13);
+            this.label9.TabIndex = 35;
+            this.label9.Text = "4. В самом большом поле будет отображена таблица.";
+            // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(619, 236);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.label7);
@@ -287,5 +298,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }
