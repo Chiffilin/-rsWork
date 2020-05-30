@@ -81,90 +81,106 @@ namespace СrsWork
 
         private void button1_Click(object sender, EventArgs e) // Кнопка "Добавить"
         {
-            Form2 f = new Form2();
-            if (f.ShowDialog() == DialogResult.OK)
+            Form6 pass = new Form6();
+            if (pass.ShowDialog() == DialogResult.OK)
             {
-
-                dataGridView1["name", dataGridView1.Rows.Count - 1].Value = f.textBox1.Text;// Занесение данных "ФИО" в строку (первый столбец)
-                
-                for (int j = 0; j < dataGridView1.Rows.Count; j++)// Цикл нумерации договора (второй столбец ) 
+                Form2 f = new Form2();
+                if (f.ShowDialog() == DialogResult.OK)
                 {
-                    dataGridView1.Rows[j].Cells[1].Value = j + 1;
-                    
+
+                    dataGridView1["name", dataGridView1.Rows.Count - 1].Value = f.textBox1.Text;// Занесение данных "ФИО" в строку (первый столбец)
+
+                    for (int j = 0; j < dataGridView1.Rows.Count; j++)// Цикл нумерации договора (второй столбец ) 
+                    {
+                        dataGridView1.Rows[j].Cells[1].Value = j + 1;
+
+                    }
+                    dataGridView1["addres", dataGridView1.Rows.Count - 1].Value = f.textBox3.Text;// Занесение данных "Адрес" в строку (третий столбец)
+                    dataGridView1["cash", dataGridView1.Rows.Count - 1].Value = f.textBox4.Text;// Занесение данных "Сумма вклада" в строку (четверный столбец)
+                    dataGridView1["contract", dataGridView1.Rows.Count - 1].Value = f.textBox5.Text;// Занесение данных "Срок договора" в строку (пятый столбец)
+                    dataGridView1.Rows.Add();//Добавление строки
                 }
-                dataGridView1["addres", dataGridView1.Rows.Count - 1].Value = f.textBox3.Text;// Занесение данных "Адрес" в строку (третий столбец)
-                dataGridView1["cash", dataGridView1.Rows.Count - 1].Value = f.textBox4.Text;// Занесение данных "Сумма вклада" в строку (четверный столбец)
-                dataGridView1["contract", dataGridView1.Rows.Count - 1].Value = f.textBox5.Text;// Занесение данных "Срок договора" в строку (пятый столбец)
-                dataGridView1.Rows.Add();//Добавление строки
             }
         }
 
         private void button2_Click(object sender, EventArgs e)// Кнопка "Удалить"(выбранную строку)    
         {
-            int index, n;
-            n = dataGridView1.Rows.Count;
-            if (n == 1) return;
-            Form3 f = new Form3();
-            index = dataGridView1.CurrentRow.Index;
-            Name = Convert.ToString(dataGridView1[0, index].Value);
-            f.label2.Text = Name;
-            if (f.ShowDialog() == DialogResult.OK) // Вывод формы, после нажатия кнопки "ОК" происходит удаление выделенной строки
+            Form6 pass = new Form6();
+            if (pass.ShowDialog() == DialogResult.OK)
             {
-                dataGridView1.Rows.RemoveAt(index); // Удаление строки
+                int index, n;
+                n = dataGridView1.Rows.Count;
+                if (n == 1) return;
+                Form3 f = new Form3();
+                index = dataGridView1.CurrentRow.Index;
+                Name = Convert.ToString(dataGridView1[0, index].Value);
+                f.label2.Text = Name;
+                if (f.ShowDialog() == DialogResult.OK) // Вывод формы, после нажатия кнопки "ОК" происходит удаление выделенной строки
+                {
+                    dataGridView1.Rows.RemoveAt(index); // Удаление строки
+                }
             }
         }
 
         private void button3_Click(object sender, EventArgs e)//Кнопка "Редактировать"
         {
-            int index, n;
-            string Name, Number, Addres, Cash, Contract;
-            n = dataGridView1.Rows.Count;// проверка, есть ли вообще записи в таблице 
-            if (n == 1) return;
-            Form4 f = new Form4();// заполнить форму данными перед открытием
-            index = dataGridView1.CurrentRow.Index;
-            Name = dataGridView1[0, index].Value.ToString();
-            Number = dataGridView1[1, index].Value.ToString();
-            Addres = dataGridView1[2, index].Value.ToString();
-            Cash = dataGridView1[3, index].Value.ToString();
-            Contract = dataGridView1[4, index].Value.ToString();
-
-            f.textBox1.Text = Name;
-            f.textBox3.Text = Addres;
-            f.textBox4.Text = Cash;
-            f.textBox5.Text = Contract;
-            if (f.ShowDialog() == DialogResult.OK) // Вывод формы, после нажатия кнопки "ОК" происходит редактирование выделенной строки
+            Form6 pass = new Form6();
+            if (pass.ShowDialog() == DialogResult.OK)
             {
-                Name = f.textBox1.Text; // Заполнение данных в "textBox1" переменной Name
-                Addres = f.textBox3.Text;// Заполнение данных в "textBox3" переменной Addres
-                Cash = f.textBox4.Text;// Заполнение данных в "textBox4" переменной Cash
-                Contract = f.textBox5.Text;// Заполнение данных в "textBox5" переменной Contract
+                int index, n;
+                string Name, Number, Addres, Cash, Contract;
+                n = dataGridView1.Rows.Count;// проверка, есть ли вообще записи в таблице 
+                if (n == 1) return;
+                Form4 f = new Form4();// заполнить форму данными перед открытием
+                index = dataGridView1.CurrentRow.Index;
+                Name = dataGridView1[0, index].Value.ToString();
+                Number = dataGridView1[1, index].Value.ToString();
+                Addres = dataGridView1[2, index].Value.ToString();
+                Cash = dataGridView1[3, index].Value.ToString();
+                Contract = dataGridView1[4, index].Value.ToString();
 
-                dataGridView1.Rows.RemoveAt(index);
-                dataGridView1["name", dataGridView1.Rows.Count - 1].Value = Name;// Занесение данных "ФИО" в строку (первый столбец)
-                dataGridView1["number", dataGridView1.Rows.Count - 1].Value = Number;// Занесение данных "Номер контракта" в строку (второй столбец) 
-                dataGridView1["addres", dataGridView1.Rows.Count - 1].Value = Addres;// Занесение данных "Адрес" в строку (третий столбец)
-                dataGridView1["cash", dataGridView1.Rows.Count - 1].Value = Cash;// Занесение данных "Сумма вклада" в строку (четверный столбец)
-                dataGridView1["contract", dataGridView1.Rows.Count - 1].Value = Contract;// Занесение данных "Срок договора" в строку (пятый столбец)
-                dataGridView1.Rows.Add();//Добавление строки
+                f.textBox1.Text = Name;
+                f.textBox3.Text = Addres;
+                f.textBox4.Text = Cash;
+                f.textBox5.Text = Contract;
+                if (f.ShowDialog() == DialogResult.OK) // Вывод формы, после нажатия кнопки "ОК" происходит редактирование выделенной строки
+                {
+                    Name = f.textBox1.Text; // Заполнение данных в "textBox1" переменной Name
+                    Addres = f.textBox3.Text;// Заполнение данных в "textBox3" переменной Addres
+                    Cash = f.textBox4.Text;// Заполнение данных в "textBox4" переменной Cash
+                    Contract = f.textBox5.Text;// Заполнение данных в "textBox5" переменной Contract
+
+                    dataGridView1.Rows.RemoveAt(index);
+                    dataGridView1["name", dataGridView1.Rows.Count - 1].Value = Name;// Занесение данных "ФИО" в строку (первый столбец)
+                    dataGridView1["number", dataGridView1.Rows.Count - 1].Value = Number;// Занесение данных "Номер контракта" в строку (второй столбец) 
+                    dataGridView1["addres", dataGridView1.Rows.Count - 1].Value = Addres;// Занесение данных "Адрес" в строку (третий столбец)
+                    dataGridView1["cash", dataGridView1.Rows.Count - 1].Value = Cash;// Занесение данных "Сумма вклада" в строку (четверный столбец)
+                    dataGridView1["contract", dataGridView1.Rows.Count - 1].Value = Contract;// Занесение данных "Срок договора" в строку (пятый столбец)
+                    dataGridView1.Rows.Add();//Добавление строки
+                }
             }
         }
 
         private void button4_Click(object sender, EventArgs e)// Кнопка "Удалить" 
         {
-            if (textBox1.Text != "")// Проверка на заполнения поля "Text" в textBox1
+            Form6 pass = new Form6();
+            if (pass.ShowDialog() == DialogResult.OK)
             {
-                for (int i = 0; i < dataGridView1.RowCount; i++)//Цикл поиск по ФИО в первом столбце и выделение данных строк
+                if (textBox1.Text != "")// Проверка на заполнения поля "Text" в textBox1
                 {
-                    dataGridView1.Rows[i].Selected = false;
-                    for (int j = 0; j < dataGridView1.ColumnCount; j++)
-                        if (dataGridView1.Rows[i].Cells[0].Value != null)
-                            if (dataGridView1.Rows[i].Cells[0].Value.ToString().Contains(textBox1.Text))
-                            {
-                                dataGridView1.Rows[i].Selected = true;
-                                int delet = dataGridView1.SelectedCells[0].RowIndex;
-                                dataGridView1.Rows.RemoveAt(delet); // Удаление всех выделенных строк
-                                break;
-                            }
+                    for (int i = 0; i < dataGridView1.RowCount; i++)//Цикл поиск по ФИО в первом столбце и выделение данных строк
+                    {
+                        dataGridView1.Rows[i].Selected = false;
+                        for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                            if (dataGridView1.Rows[i].Cells[0].Value != null)
+                                if (dataGridView1.Rows[i].Cells[0].Value.ToString().Contains(textBox1.Text))
+                                {
+                                    dataGridView1.Rows[i].Selected = true;
+                                    int delet = dataGridView1.SelectedCells[0].RowIndex;
+                                    dataGridView1.Rows.RemoveAt(delet); // Удаление всех выделенных строк
+                                    break;
+                                }
+                    }
                 }
             }
             
@@ -199,7 +215,7 @@ namespace СrsWork
             if (textBox3.Text != "")// Проверка на заполнения поля "Text" в textBox3
             {
 
-               for (int i = 0; i < dataGridView1.Rows.Count - 5; i++)// Цикл поиска данных  из "textBox3" по заданной сумме вклада
+               for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)// Цикл поиска данных  из "textBox3" по заданной сумме вклада
                 {
                     dataGridView1.Rows[i].Visible = dataGridView1[3, i].Value.ToString() == textBox3.Text;
                 }
@@ -219,7 +235,7 @@ namespace СrsWork
             if (textBox4.Text != "")// Проверка на заполнения поля "Text" в textBox4
             {
 
-                for (int i = 0; i < dataGridView1.Rows.Count - 5; i++)// Цикл поиска данных  из "textBox4" по сроку вклада
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)// Цикл поиска данных  из "textBox4" по сроку вклада
                 {
                     dataGridView1.Rows[i].Visible = dataGridView1[4, i].Value.ToString() == textBox4.Text;
                 }
